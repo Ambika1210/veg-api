@@ -1,0 +1,20 @@
+{
+  "name": "veg-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ambika1210/veg-api.git"
+  },
+  "keywords": [],
+  "author": "Ambika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ambika1210/veg-api/issues"
+  },
+  "homepage": "https://github.com/Ambika1210/veg-api#readme"
+}
