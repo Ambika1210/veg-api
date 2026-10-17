@@ -4,3 +4,5 @@ export const ENV_PRODUCTION = 'production';
 export const INFO = 'info';
 export const DEBUG = 'debug';
 
+export const ADMIN = 'ADMIN';
+export const CUSTOMER = 'CUSTOMER';
