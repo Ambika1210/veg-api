@@ -2,11 +2,12 @@ import { ADMIN, CUSTOMER, SUPER_ADMIN } from '../constant/enum.js';
 
 const ROLES = {
     [SUPER_ADMIN]: [
-        "admin:create"
+        "admin:create",
+        "product:create"
 
     ],
     [ADMIN]: [
-
+        "product:create"
     ],
     [CUSTOMER]: [
 

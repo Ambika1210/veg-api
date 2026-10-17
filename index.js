@@ -5,6 +5,7 @@ import chalk from './src/utils/chalk.js';
 import { connectDB } from './src/database/db.js';
 import userRouter from './src/modules/users/user.route.js';
 import authRouter from './src/modules/auth/auth.route.js';
+import productRouter from './src/modules/products/product.route.js';
 
 
 const app = express();
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/v1', userRouter);
 app.use('/v1', authRouter);
+app.use('/v1', productRouter);
 
 app.get('/health', (req, res) => {
     res.status(200).json({
