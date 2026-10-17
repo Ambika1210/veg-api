@@ -1,16 +1,15 @@
-import { ADMIN, CUSTOMER } from '../constant/enum.js';
+import { ADMIN, CUSTOMER, SUPER_ADMIN } from '../constant/enum.js';
 
 const ROLES = {
+    [SUPER_ADMIN]: [
+        "admin:create"
+
+    ],
     [ADMIN]: [
-        'CREATE_ADMIN',
-        'GET_ALL_USERS',
-        'GET_USER_BY_ID',
-        'UPDATE_USER',
-        'DELETE_USER',
+
     ],
     [CUSTOMER]: [
-        'GET_MY_PROFILE',
-        'UPDATE_MY_PROFILE',
+
     ],
 };
 

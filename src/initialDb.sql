@@ -3,9 +3,11 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 DO $$ 
 BEGIN 
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'user_type') THEN 
-        CREATE TYPE user_type AS ENUM ('ADMIN', 'CUSTOMER'); 
+        CREATE TYPE user_type AS ENUM ('SUPERADMIN', 'ADMIN', 'CUSTOMER'); 
     END IF; 
 END $$;
+
+ALTER TYPE user_type ADD VALUE IF NOT EXISTS 'SUPERADMIN';
 
 CREATE TABLE IF NOT EXISTS users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

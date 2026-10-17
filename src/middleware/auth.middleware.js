@@ -74,7 +74,10 @@ function checkPermission(requiredPermission) {
 
                 if (requiredPermission && !hasPermission(existingUser.role, requiredPermission)) {
                     logger.warn(`checkPermission >>>> Access Denied for User: ${userId} | Role: ${existingUser.role} | Required: ${requiredPermission}`);
-                    return res.status(403).json({ success: false, message: 'Insufficient permissions' });
+                    return res.status(403).json({
+                        success: false,
+                        message: 'Insufficient permissions'
+                    });
                 }
 
                 // Enrich request context using separate helper

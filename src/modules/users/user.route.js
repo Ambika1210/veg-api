@@ -2,6 +2,7 @@ import { Router } from 'express';
 import UserController from './user.controller.js';
 import { validate } from '../../middleware/validate.js';
 import { createUserSchema, updateUserSchema } from './user.validation.js';
+import { checkPermission } from '../../middleware/auth.middleware.js'
 
 const router = Router();
 
@@ -9,7 +10,7 @@ const router = Router();
 router.post('/users/create-customer', validate(createUserSchema), UserController.createCustomer);
 
 // Admin registration route
-router.post('/users/create-admin', validate(createUserSchema), UserController.createAdmin);
+router.post('/users/create-admin', checkPermission("admin:create"), validate(createUserSchema), UserController.createAdmin);
 
 // Get all users (Paginated, search, role filters)
 router.get('/user/get-all-users', UserController.getAllUsers);
