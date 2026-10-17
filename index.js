@@ -2,6 +2,7 @@ import express from 'express';
 import config from './src/config/config.js';
 import logger from './src/utils/logger.js';
 import chalk from './src/utils/chalk.js';
+import { connectDB } from './src/database/db.js';
 
 
 const app = express();
@@ -34,7 +35,9 @@ app.get('/health', (req, res) => {
     });
 });
 
-const startServer = () => {
+const startServer = async () => {
+    await connectDB()
+
     app.listen(config.PORT, () => {
         logger.info(`Server is running on port ${config.PORT}`);
     });
