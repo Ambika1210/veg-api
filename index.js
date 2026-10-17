@@ -3,6 +3,7 @@ import config from './src/config/config.js';
 import logger from './src/utils/logger.js';
 import chalk from './src/utils/chalk.js';
 import { connectDB } from './src/database/db.js';
+import userRouter from './src/modules/users/user.route.js';
 
 
 const app = express();
@@ -27,6 +28,9 @@ app.use((req, res, next) => {
     logger.info(`${method === 'GET' ? chalk.getReq(method) : chalk.postReq(method)}  ${protocol}://${hostname}:${config.PORT}${originalUrl}`);
     next();
 });
+
+// Routes
+app.use('/v1', userRouter);
 
 app.get('/health', (req, res) => {
     res.status(200).json({

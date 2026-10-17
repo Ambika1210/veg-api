@@ -1,0 +1,20 @@
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
+DO $$ 
+BEGIN 
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'user_type') THEN 
+        CREATE TYPE user_type AS ENUM ('ADMIN', 'CUSTOMER'); 
+    END IF; 
+END $$;
+
+CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    mobile_number VARCHAR(15) UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role user_type DEFAULT 'CUSTOMER',
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
