@@ -1,5 +1,6 @@
 import authService from './auth.service.js';
 import logger from '../../utils/logger.js';
+import config from '../../config/config.js';
 
 class AuthController {
     login = async (req, res) => {
@@ -12,10 +13,13 @@ class AuthController {
                 password,
             });
 
-            logger.info(`AuthController >>>> login >>>> User ${result.user.id} logged in successfully`, {
-                userId: result.user.id,
-                email: result.user.email,
-                role: result.user.role,
+            logger.info(`AuthController >>>> login >>>> User ${result.user.id} logged in successfully`, { userId: result.user.id, email: result.user.email, role: result.user.role });
+
+            res.cookie('token', result.token, {
+                httpOnly: true,
+                secure: config.STAGE === 'production',
+                sameSite: 'lax',
+                maxAge: config.COOKIE_MAX_AGE,
             });
 
             return res.status(200).json({
